@@ -76,8 +76,73 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ============ HERO ============ */}
-      <section className="relative flex min-h-[100svh] items-end overflow-hidden">
+      {/*
+        ============ HERO — small screens ============
+        Phones get their own art direction. A 16:9 banner dropped into a ~0.46
+        viewport would throw away three quarters of the frame, so a dedicated
+        4:5 crop is rendered at exactly 4:5 — nothing is cropped a second time.
+        The photograph carries no overlay at all: the copy sits on cream
+        beneath it, so nothing has to be darkened to stay legible.
+      */}
+      <section className="bg-cream pt-[68px] sm:hidden">
+        <div className="relative aspect-[4/5] w-full overflow-hidden">
+          <Image
+            src={BRAND.heroMobile.src}
+            alt={BRAND.heroMobile.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="container-x pb-16 pt-9">
+          <p className="eyebrow animate-fade-up">
+            Greendale, Harare · Newtown, Kwekwe
+          </p>
+          <h1
+            className="animate-fade-up mt-5 font-display text-[2.6rem] leading-[1.04] text-teal-800 text-balance"
+            style={{ animationDelay: "80ms" }}
+          >
+            Refined aesthetic care, tailored to you.
+          </h1>
+          <p
+            className="animate-fade-up mt-4 text-[1.02rem] leading-relaxed text-stone text-pretty"
+            style={{ animationDelay: "160ms" }}
+          >
+            Personalised facial, wellness, contouring and beauty treatments in a
+            calm, professional setting. Every visit begins with a consultation,
+            so your treatment is matched to your goals.
+          </p>
+          <div
+            className="animate-fade-up mt-7 flex flex-col gap-3"
+            style={{ animationDelay: "240ms" }}
+          >
+            <Link href="/booking" className="btn btn-gold w-full text-base">
+              Book a consultation
+            </Link>
+            <Link href="/treatments" className="btn btn-outline w-full text-base">
+              Explore treatments <ArrowRight size={18} />
+            </Link>
+          </div>
+          <p
+            className="animate-fade-up mt-6 text-sm leading-relaxed text-mist"
+            style={{ animationDelay: "320ms" }}
+          >
+            Treatments from{" "}
+            <span className="font-medium text-teal-700">US${lowestPrice}</span> ·
+            IV wellness · Facials · Contouring · Massage · Laser
+          </p>
+        </div>
+      </section>
+
+      {/*
+        ============ HERO — sm and up ============
+        The full 16:9 frame, shown true to colour. The only overlay is a
+        neutral, bottom-anchored scrim for text legibility — no hue is added,
+        and the upper half of the photograph is left untouched.
+      */}
+      <section className="relative hidden min-h-[100svh] items-end overflow-hidden sm:flex">
         <div className="absolute inset-0">
           <Image
             src={BRAND.hero.src}
@@ -85,10 +150,10 @@ export default function HomePage() {
             fill
             priority
             sizes="100vw"
-            className="animate-kenburns object-cover object-[68%_center] lg:object-center"
+            className="animate-kenburns object-cover object-[62%_center] lg:object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-teal-900/45 via-teal-900/25 to-teal-900/85" />
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/75 via-teal-900/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/5 to-transparent" />
         </div>
 
         <div className="container-x relative z-10 pb-20 pt-36 md:pb-28">
@@ -98,14 +163,14 @@ export default function HomePage() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 max-w-3xl font-display text-[3rem] leading-[1.02] text-cream text-balance sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-3xl font-display text-[3rem] leading-[1.02] text-cream text-balance sm:text-6xl lg:text-7xl [text-shadow:0_2px_24px_rgba(0,0,0,0.3)]">
               Refined aesthetic care,
               <br />
               tailored to you.
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85 text-pretty">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90 text-pretty [text-shadow:0_1px_16px_rgba(0,0,0,0.38)]">
               Personalised facial, wellness, contouring and beauty treatments in
               a calm, professional setting. Every visit begins with a
               consultation, so your treatment is matched to your goals — and to
@@ -123,7 +188,7 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal delay={0.32}>
-            <p className="mt-8 text-sm text-cream/70">
+            <p className="mt-8 text-sm text-cream/75 [text-shadow:0_1px_14px_rgba(0,0,0,0.42)]">
               Treatments from{" "}
               <span className="font-medium text-cream">US${lowestPrice}</span> ·
               IV wellness · Facials · Contouring · Massage · Laser

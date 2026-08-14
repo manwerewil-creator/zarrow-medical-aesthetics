@@ -35,8 +35,13 @@ export function Navbar() {
 
   return (
     <>
+      {/*
+        The `max-sm:` overrides keep the bar opaque on phones. Small screens get
+        an untinted, light hero photograph, so the transparent treatment (which
+        flips the logo to white) would leave the mark invisible.
+      */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 max-sm:bg-cream/90 max-sm:shadow-[0_1px_0_rgba(39,82,79,0.08)] max-sm:backdrop-blur-md ${
           solid
             ? "bg-cream/90 backdrop-blur-md shadow-[0_1px_0_rgba(39,82,79,0.08)]"
             : "bg-transparent"
@@ -44,7 +49,7 @@ export function Navbar() {
         style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
       >
         <nav
-          className={`container-x flex items-center justify-between transition-all duration-500 ${
+          className={`container-x flex items-center justify-between transition-all duration-500 max-sm:h-[68px] ${
             solid ? "h-[68px]" : "h-24"
           }`}
           style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
@@ -60,7 +65,7 @@ export function Navbar() {
               width={544}
               height={148}
               priority
-              className={`h-9 w-auto transition-all duration-500 sm:h-10 ${
+              className={`h-9 w-auto transition-all duration-500 max-sm:filter-none sm:h-10 ${
                 solid ? "" : "brightness-0 invert"
               }`}
             />
@@ -117,7 +122,7 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden ${
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors max-sm:text-teal-800 lg:hidden ${
                 solid
                   ? "text-teal-800 hover:bg-teal-700/8"
                   : "text-cream hover:bg-white/12"

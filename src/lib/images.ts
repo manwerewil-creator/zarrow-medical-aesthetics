@@ -21,22 +21,34 @@ export type Img = {
 const u = (p: string): string =>
   "https://images.unsplash.com/" + p + "?auto=format&fit=crop&q=80";
 
-/** Zarrow's own artwork — no attribution chip needed. */
+/**
+ * Zarrow's own artwork — no attribution chip needed.
+ *
+ * Generated from the originals in /assets/source-images by `npm run images`.
+ * `heroMobile` is a purpose-cut 4:5 crop: the wide hero is composed as a
+ * banner, and a phone viewport would otherwise discard most of the frame.
+ * Art-directing the crop means small screens get a composition that was
+ * actually made for them.
+ */
 export const BRAND = {
   hero: {
-    src: "/images/hero-medical-aesthetics.png",
+    src: "/images/hero-medical-aesthetics.jpg",
+    alt: "A client relaxing in a robe in Zarrow's treatment room, with soft light and warm teal cabinetry.",
+  },
+  heroMobile: {
+    src: "/images/hero-medical-aesthetics-mobile.jpg",
     alt: "A client relaxing in a robe in Zarrow's treatment room, with soft light and warm teal cabinetry.",
   },
   facial: {
-    src: "/images/service-facial-care.png",
+    src: "/images/service-facial-care.jpg",
     alt: "A facial treatment in progress at Zarrow Medical Aesthetics.",
   },
   contouring: {
-    src: "/images/service-body-contouring.png",
+    src: "/images/service-body-contouring.jpg",
     alt: "A Zarrow therapist talking a client through a body contouring plan on a tablet.",
   },
   ivWellness: {
-    src: "/images/service-iv-wellness.png",
+    src: "/images/service-iv-wellness.jpg",
     alt: "The IV wellness lounge at Zarrow, set up for a vitamin drip.",
   },
 } satisfies Record<string, Img>;
