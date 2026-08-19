@@ -133,6 +133,12 @@
     height: 1px;
     background: var(--color-gold-500);
   }
+  /* Centred bands pair the kicker with an <Ornament/>, so the inline dashes
+     would double up. This drops them and leaves the lettering alone. */
+  .eyebrow-quiet::before,
+  .eyebrow-quiet::after {
+    display: none;
+  }
 
   /* Buttons — thin, wide-tracked, unhurried */
   .btn {

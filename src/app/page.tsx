@@ -2,90 +2,87 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
-  ArrowUpRight,
-  ClipboardCheck,
   Droplets,
-  HeartHandshake,
   MapPin,
-  ShieldCheck,
+  Phone,
   Sparkles,
+  Syringe,
   Target,
+  Waves,
+  Zap,
 } from "lucide-react";
 import { BRAND, IMAGES } from "@/lib/images";
-import {
-  CATEGORIES,
-  byCategory,
-  formatPrice,
-  getCategory,
-  lowestPrice,
-} from "@/lib/treatments";
+import { CATEGORIES, byCategory, fromPrice, lowestPrice } from "@/lib/treatments";
 import { BRANCHES, SITE } from "@/lib/site";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
-import { SectionHeading } from "@/components/Section";
 import { Ornament } from "@/components/Ornament";
 import { Parallax } from "@/components/Parallax";
 import { RevealImage } from "@/components/RevealImage";
-import { TreatmentCard } from "@/components/TreatmentCard";
-import { Credit } from "@/components/Credit";
 
-const HOW_IT_WORKS = [
-  {
-    icon: ClipboardCheck,
-    title: "Consultation first",
-    body: "We start by listening. Your skin, your history, your goals and anything that rules a treatment in or out — before a single product is opened.",
-  },
-  {
-    icon: Target,
-    title: "A plan that fits",
-    body: "You leave with a plan you understand: what is recommended, what it costs, what to expect, and what happens afterwards.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Care that continues",
-    body: "Aftercare, follow-up and honest advice on pacing. We would rather do less, well, than more, quickly.",
-  },
+/**
+ * The homepage is deliberately image-led: photography carries the story and
+ * the copy stays to a line or two per band. Category detail and the full
+ * price list live on /treatments, so nothing here needs a paragraph.
+ */
+
+const CATEGORY_ICONS = {
+  facials: Sparkles,
+  "advanced-skin": Syringe,
+  "iv-drips": Droplets,
+  body: Target,
+  massage: Waves,
+  "waxing-laser": Zap,
+} as const;
+
+/** One photograph per category for the grid. */
+const CATEGORY_IMAGES = {
+  facials: BRAND.facial,
+  "advanced-skin": IMAGES.facialCloseUp,
+  "iv-drips": BRAND.ivWellness,
+  body: BRAND.contouring,
+  massage: IMAGES.massage,
+  "waxing-laser": IMAGES.browTreatment,
+} as const;
+
+const MOSAIC = [
+  IMAGES.reception,
+  IMAGES.candles,
+  IMAGES.towels,
+  IMAGES.eucalyptus,
+  IMAGES.hotStones,
+  IMAGES.skincareTray,
+  IMAGES.whiteFlowers,
+  IMAGES.lounge,
 ];
 
-const ASSURANCES = [
-  {
-    icon: ShieldCheck,
-    title: "Consultation-led",
-    body: "Advanced skin work, injectables, laser and IV infusions are only booked after assessment.",
-  },
-  {
-    icon: Sparkles,
-    title: "Two studios",
-    body: "Greendale in Harare and Newtown in Kwekwe, both set up for treatment and quiet recovery.",
-  },
-  {
-    icon: Droplets,
-    title: "A full IV bar",
-    body: "Eight wellness infusions, from the Myers cocktail to a complete skin boost, in an unhurried lounge.",
-  },
+const MARKS = [
+  { icon: Sparkles, label: "Consultation led" },
+  { icon: Droplets, label: "Eight IV drips" },
+  { icon: MapPin, label: "Two studios" },
+  { icon: Waves, label: "Nine massages" },
 ];
 
 export default function HomePage() {
-  const facials = getCategory("facials")!;
-  const iv = getCategory("iv-drips")!;
-  const body = getCategory("body")!;
-  const drips = byCategory("iv-drips");
-  const contouring = byCategory("body")[0];
-
   const tickerItems = CATEGORIES.flatMap((c) =>
     byCategory(c.id)
       .slice(0, 4)
       .map((t) => t.name)
   );
 
+  // A short price snapshot — the full menu lives on /treatments.
+  const snapshot = [
+    ...byCategory("facials").slice(0, 3),
+    ...byCategory("iv-drips").slice(0, 3),
+    ...byCategory("massage").slice(0, 2),
+    ...byCategory("waxing-laser").slice(0, 2),
+  ];
+
   return (
     <>
       {/*
         ============ HERO — small screens ============
-        Phones get their own art direction. A 16:9 banner dropped into a ~0.46
-        viewport would throw away three quarters of the frame, so a dedicated
-        4:5 crop is rendered at exactly 4:5 — nothing is cropped a second time.
-        The photograph carries no overlay at all: the copy sits on cream
-        beneath it, so nothing has to be darkened to stay legible.
+        A dedicated 4:5 crop at exactly 4:5, so nothing is cropped twice, and
+        no overlay at all: the copy sits on cream beneath the photograph.
       */}
       <section className="bg-cream pt-[68px] sm:hidden">
         <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -99,51 +96,31 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="container-x pb-16 pt-9">
-          <p className="eyebrow animate-fade-up">
-            Greendale, Harare · Newtown, Kwekwe
-          </p>
+        <div className="container-x pb-14 pt-9 text-center">
+          <p className="eyebrow eyebrow-quiet animate-fade-up">Harare · Kwekwe</p>
           <h1
-            className="animate-fade-up mt-5 font-display text-[2.6rem] leading-[1.04] text-teal-800 text-balance"
+            className="animate-fade-up mt-5 font-display text-[2.5rem] leading-[1.08] text-teal-800 text-balance"
             style={{ animationDelay: "80ms" }}
           >
-            Refined aesthetic care, tailored to you.
+            Refined aesthetic care.
           </h1>
-          <p
-            className="animate-fade-up mt-4 text-[1.02rem] leading-relaxed text-stone text-pretty"
-            style={{ animationDelay: "160ms" }}
-          >
-            Personalised facial, wellness, contouring and beauty treatments in a
-            calm, professional setting. Every visit begins with a consultation,
-            so your treatment is matched to your goals.
-          </p>
           <div
-            className="animate-fade-up mt-7 flex flex-col gap-3"
-            style={{ animationDelay: "240ms" }}
+            className="animate-fade-up mt-8 flex flex-col gap-3"
+            style={{ animationDelay: "200ms" }}
           >
             <Link href="/booking" className="btn btn-gold w-full">
               Book a consultation
             </Link>
             <Link href="/treatments" className="btn btn-outline w-full">
-              Explore treatments <ArrowRight size={18} />
+              View treatments
             </Link>
           </div>
-          <p
-            className="animate-fade-up mt-6 text-sm leading-relaxed text-mist"
-            style={{ animationDelay: "320ms" }}
-          >
-            Treatments from{" "}
-            <span className="font-medium text-teal-700">US${lowestPrice}</span> ·
-            IV wellness · Facials · Contouring · Massage · Laser
-          </p>
         </div>
       </section>
 
       {/*
         ============ HERO — sm and up ============
-        The full 16:9 frame, shown true to colour. The only overlay is a
-        neutral, bottom-anchored scrim for text legibility — no hue is added,
-        and the upper half of the photograph is left untouched.
+        The full frame, true to colour. A neutral bottom scrim only.
       */}
       <section className="relative hidden min-h-[100svh] items-end overflow-hidden sm:flex">
         <div className="absolute inset-0">
@@ -159,272 +136,134 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/5 to-transparent" />
         </div>
 
-        <div className="container-x relative z-10 pb-20 pt-36 md:pb-28">
+        <div className="container-x relative z-10 pb-24 pt-36">
           <Reveal>
-            <p className="eyebrow text-gold-300">
-              Greendale, Harare · Newtown, Kwekwe
-            </p>
+            <p className="eyebrow text-gold-300">Harare · Kwekwe</p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 max-w-3xl font-display text-[3rem] leading-[1.02] text-cream text-balance sm:text-6xl lg:text-7xl [text-shadow:0_2px_24px_rgba(0,0,0,0.3)]">
+            <h1 className="mt-6 max-w-3xl font-display text-[3.4rem] leading-[1.04] text-cream text-balance lg:text-7xl [text-shadow:0_2px_24px_rgba(0,0,0,0.3)]">
               Refined aesthetic care,
               <br />
               tailored to you.
             </h1>
           </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/90 text-pretty [text-shadow:0_1px_16px_rgba(0,0,0,0.38)]">
-              Personalised facial, wellness, contouring and beauty treatments in
-              a calm, professional setting. Every visit begins with a
-              consultation, so your treatment is matched to your goals — and to
-              what is right for you.
-            </p>
-          </Reveal>
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/booking" className="btn btn-gold">
                 Book a consultation
               </Link>
               <Link href="/treatments" className="btn btn-ghost-light">
-                Explore treatments <ArrowRight size={18} />
+                View treatments
               </Link>
             </div>
-          </Reveal>
-          <Reveal delay={0.32}>
-            <p className="mt-8 text-sm text-cream/75 [text-shadow:0_1px_14px_rgba(0,0,0,0.42)]">
-              Treatments from{" "}
-              <span className="font-medium text-cream">US${lowestPrice}</span> ·
-              IV wellness · Facials · Contouring · Massage · Laser
-            </p>
           </Reveal>
         </div>
       </section>
 
       {/* ============ TICKER ============ */}
-      <section className="overflow-hidden border-y border-teal-700/10 bg-ivory py-4">
-        <div className="animate-marquee flex w-max">
-          {[0, 1].map((copy) => (
-            <ul key={copy} aria-hidden={copy === 1} className="flex items-center">
-              {tickerItems.map((name, i) => (
-                <li
-                  key={`${copy}-${i}`}
-                  className="flex items-center whitespace-nowrap px-6 text-sm tracking-wide text-stone"
-                >
-                  {name}
-                  <span className="ml-6 h-1 w-1 rounded-full bg-gold-400" />
-                </li>
-              ))}
-            </ul>
+      <section className="overflow-hidden border-y border-gold-500/15 bg-sand py-4">
+        <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
+          {[...tickerItems, ...tickerItems].map((name, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-10 text-[0.7rem] uppercase tracking-[0.3em] text-teal-700/70"
+            >
+              {name}
+              <span className="h-1 w-1 rounded-full bg-gold-500" />
+            </span>
           ))}
         </div>
       </section>
 
-      {/* ============ WELCOME ============ */}
+      {/* ============ INTRO — one line, nothing more ============ */}
       <section className="bg-noise bg-cream">
-        <div className="container-x grid gap-14 py-24 md:py-32 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <RevealImage className="card-surface frame-gold aspect-[4/5] rounded-[var(--radius-xl2)]">
-              <Image
-                src={BRAND.facial.src}
-                alt={BRAND.facial.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </RevealImage>
-            <Reveal delay={0.15}>
-              <div className="card-surface animate-floaty absolute -bottom-8 -right-4 hidden w-52 rounded-2xl bg-paper p-5 sm:block">
-                <p className="font-display text-3xl text-teal-700">Welcome.</p>
-                <p className="mt-1 text-sm leading-relaxed text-stone">
-                  Take a seat. We get to know your skin first.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div>
-            <SectionHeading
-              eyebrow="Welcome to Zarrow"
-              title="Considered treatment, without the rush."
-              intro="Zarrow Medical Aesthetics is an aesthetics, wellness and beauty studio in Greendale, Harare — known for facials, IV wellness drips, body contouring, massage, waxing and laser care. What ties it together is the approach: assess properly, explain honestly, then treat."
-            />
-            <Reveal delay={0.15}>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-stone text-pretty">
-                Some visits are a thirty-dollar facial before an occasion.
-                Others are a course of treatment planned over months. Both get
-                the same attention, the same privacy, and the same refusal to
-                promise anything we cannot deliver.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <Link
-                href="/about"
-                className="link-underline mt-8 inline-flex items-center gap-2 font-medium text-teal-700"
-              >
-                Read our story <ArrowUpRight size={18} />
-              </Link>
-            </Reveal>
-          </div>
+        <div className="container-x py-24 text-center md:py-32">
+          <Reveal>
+            <p className="eyebrow eyebrow-quiet">Welcome to Zarrow</p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Ornament className="mt-6" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="measure mt-8 font-display text-[2.1rem] leading-[1.2] text-balance sm:text-[2.7rem] lg:text-[3.2rem]">
+              Skin, body and wellness — done slowly, and done properly.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <p className="measure mt-6 text-[1.05rem] leading-relaxed text-stone">
+              Every visit begins with a consultation.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ TREATMENT CATEGORIES ============ */}
+      {/* ============ TREATMENTS — image-led, six cards ============ */}
       <section className="bg-ivory">
         <div className="container-x py-24 md:py-32">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeading
-              eyebrow="What we do"
-              title="Six ways we look after you."
-              intro="From a classic facial to a consultation-led contouring plan — the full Zarrow menu, with prices published up front."
-            />
+          <div className="text-center">
+            <Reveal>
+              <p className="eyebrow eyebrow-quiet">The menu</p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Ornament className="mt-6" />
+            </Reveal>
             <Reveal delay={0.1}>
-              <Link href="/treatments" className="btn btn-outline shrink-0">
-                See every treatment <ArrowRight size={18} />
-              </Link>
+              <h2 className="mt-8 font-display text-[2.1rem] sm:text-[2.7rem] lg:text-[3.1rem]">
+                Six ways we care for you
+              </h2>
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c, i) => (
-              <Reveal key={c.id} delay={(i % 3) * 0.08}>
-                <TreatmentCard category={c} priority={i === 0} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+          <Stagger className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((c) => {
+              const Icon = CATEGORY_ICONS[c.id];
+              const img = CATEGORY_IMAGES[c.id];
+              const from = fromPrice(c.id);
+              return (
+                <StaggerItem key={c.id}>
+                  <Link
+                    href={`/treatments#${c.id}`}
+                    className="group hover-lift card-surface block overflow-hidden rounded-[var(--radius-xl2)]"
+                  >
+                    <div className="relative aspect-[4/5] overflow-hidden">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent" />
 
-      {/* ============ IV BAR ============ */}
-      <section className="relative overflow-hidden bg-teal-800 text-cream">
-        <div className="absolute inset-0 opacity-[0.16]">
-          <Image
-            src={BRAND.ivWellness.src}
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-        <div
-          aria-hidden
-          className="animate-aura pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-gold-500/10 blur-3xl"
-        />
+                      <span className="absolute left-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold-300/45 bg-ink/25 text-gold-200 backdrop-blur-sm">
+                        <Icon size={19} strokeWidth={1.4} />
+                      </span>
 
-        <div className="container-x relative grid gap-14 py-24 md:py-32 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              light
-              eyebrow="The IV Wellness Bar"
-              title="Where Zarrow began."
-              intro={iv.detail}
-            />
-            <Reveal delay={0.18}>
-              <Link href="/treatments#iv-drips" className="btn btn-gold mt-9">
-                View the drip menu <ArrowRight size={18} />
-              </Link>
-            </Reveal>
-          </div>
-
-          <Stagger className="grid gap-px overflow-hidden rounded-[var(--radius-xl2)] border border-white/10 bg-white/10 sm:grid-cols-2">
-            {drips.map((d) => (
-              <StaggerItem
-                key={d.slug}
-                className="group bg-teal-800 p-5 transition-colors duration-500 hover:bg-teal-700"
-              >
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="text-[0.95rem] text-cream">{d.name}</span>
-                  <span className="font-display text-lg text-gold-300">
-                    {formatPrice(d)}
-                  </span>
-                </div>
-                <p className="mt-1.5 text-xs leading-relaxed text-teal-100/65">
-                  {d.short}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* ============ BODY CONTOURING ============ */}
-      <section className="bg-cream">
-        <div className="container-x grid gap-14 py-24 md:py-32 lg:grid-cols-2 lg:items-center">
-          <div className="order-2 lg:order-1">
-            <SectionHeading
-              eyebrow="Area-targeted contouring"
-              title="Focused where you want it."
-              intro={body.detail}
-            />
-            <Stagger className="mt-8 grid grid-cols-2 gap-4">
-              {[
-                "Jawline",
-                "Chin",
-                "Bra fat",
-                "Back fat",
-                "Tummy fat",
-                "Love handles",
-              ].map((area) => (
-                <StaggerItem
-                  key={area}
-                  className="flex items-center gap-3 text-sm text-stone"
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" />
-                  {area}
+                      <div className="absolute inset-x-5 bottom-5">
+                        <h3 className="font-display text-[1.45rem] leading-tight text-cream">
+                          {c.shortName}
+                        </h3>
+                        {from !== null ? (
+                          <p className="mt-1 text-[0.72rem] uppercase tracking-[0.22em] text-gold-200">
+                            From {SITE.currency}
+                            {from}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                  </Link>
                 </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal delay={0.2}>
-              <div className="mt-9 flex flex-wrap items-center gap-5">
-                <Link
-                  href={`/booking?treatment=${contouring.slug}`}
-                  className="btn btn-primary"
-                >
-                  Book a contouring consult
-                </Link>
-                <p className="text-sm text-stone">
-                  <span className="mr-2 text-mist line-through">
-                    US${contouring.wasPrice}
-                  </span>
-                  <span className="font-display text-2xl text-teal-700">
-                    US${contouring.price}
-                  </span>
-                  <span className="ml-2 text-xs uppercase tracking-widest text-gold-600">
-                    promotional
-                  </span>
-                </p>
-              </div>
-            </Reveal>
-          </div>
+              );
+            })}
+          </Stagger>
 
-          <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
-            <Reveal className="card-surface relative aspect-[3/4] overflow-hidden rounded-2xl">
-              <Image
-                src={BRAND.contouring.src}
-                alt={BRAND.contouring.alt}
-                fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover object-[65%_center]"
-              />
-            </Reveal>
-            <Reveal
-              delay={0.12}
-              className="card-surface relative mt-8 aspect-[3/4] overflow-hidden rounded-2xl"
-            >
-              <Image
-                src={IMAGES.massage.src}
-                alt={IMAGES.massage.alt}
-                fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
-              <Credit
-                author={IMAGES.massage.author}
-                link={IMAGES.massage.link}
-                light
-                className="absolute bottom-3 right-3"
-              />
-            </Reveal>
-          </div>
+          <Reveal delay={0.1}>
+            <div className="mt-14 text-center">
+              <Link href="/treatments" className="btn btn-outline">
+                Full menu &amp; prices <ArrowRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -443,290 +282,199 @@ export default function HomePage() {
 
         <div className="container-x relative py-28 text-center md:py-36">
           <Reveal>
-            <p className="eyebrow justify-center text-gold-300">The Zarrow way</p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <Ornament light className="mt-6" />
+            <Ornament light />
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="measure mt-9 font-display text-[1.7rem] leading-[1.45] text-cream text-balance sm:text-[2.1rem] lg:text-[2.4rem]">
-              Unhurried rooms, considered hands, and a plan made for your skin
-              — not for everyone&rsquo;s.
+            <p className="measure mt-9 font-display text-[1.75rem] leading-[1.4] text-cream text-balance sm:text-[2.2rem]">
+              Unhurried rooms. Considered hands.
             </p>
           </Reveal>
-          <Reveal delay={0.18}>
-            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+          <Reveal delay={0.2}>
+            <div className="mt-10">
               <Link href="/booking" className="btn btn-gold">
                 Book a consultation
               </Link>
-              <Link href="/treatments" className="btn btn-outline-gold">
-                View the menu
-              </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ============ HOW IT WORKS ============ */}
+      {/* ============ ICON STRIP — four marks, no paragraphs ============ */}
+      <section className="bg-sand">
+        <div className="container-x py-20 md:py-24">
+          <Stagger className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
+            {MARKS.map((item) => (
+              <StaggerItem key={item.label} className="text-center">
+                <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border border-gold-500/35 text-gold-600">
+                  <item.icon size={24} strokeWidth={1.3} />
+                </span>
+                <p className="mt-5 text-[0.72rem] uppercase tracking-[0.24em] text-teal-800">
+                  {item.label}
+                </p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ============ MOSAIC — pictures only ============ */}
+      <section className="bg-cream">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:grid-cols-4">
+          {MOSAIC.map((img, i) => (
+            <RevealImage
+              key={i}
+              delay={(i % 4) * 0.06}
+              className="group relative aspect-square"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 640px) 50vw, 25vw"
+                className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+              />
+              <span className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/15" />
+            </RevealImage>
+          ))}
+        </div>
+        <div className="container-x py-12 text-center">
+          <Link href="/gallery" className="btn btn-outline">
+            Open the gallery <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ============ PRICE SNAPSHOT — numbers, not prose ============ */}
       <section className="bg-ivory">
         <div className="container-x py-24 md:py-32">
-          <SectionHeading
-            align="center"
-            eyebrow="How a visit works"
-            title="Three steps, no surprises."
-            intro="The same order every time, whether you are here for a brow wax or a course of advanced skin treatment."
-          />
-          <Stagger className="mt-16 grid gap-7 md:grid-cols-3">
-            {HOW_IT_WORKS.map((s, i) => (
-              <StaggerItem
-                key={s.title}
-                className="card-surface hover-lift rounded-[var(--radius-xl2)] p-8"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal-50 text-teal-600">
-                    <s.icon size={20} strokeWidth={1.6} />
-                  </span>
-                  <span className="font-display text-2xl text-gold-400">
-                    0{i + 1}
-                  </span>
-                </div>
-                <h3 className="mt-6 font-display text-2xl text-teal-800">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-stone text-pretty">
-                  {s.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* ============ ASSURANCES ============ */}
-      <section className="bg-cream">
-        <div className="container-x py-20 md:py-24">
-          <Stagger className="grid gap-px overflow-hidden rounded-[var(--radius-xl2)] border border-teal-700/10 bg-teal-700/10 md:grid-cols-3">
-            {ASSURANCES.map((a) => (
-              <StaggerItem
-                key={a.title}
-                className="bg-paper p-8 transition-colors duration-500 hover:bg-teal-50/60"
-              >
-                <a.icon size={26} className="text-gold-500" strokeWidth={1.4} />
-                <h3 className="mt-5 font-display text-xl text-teal-800">
-                  {a.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-stone text-pretty">
-                  {a.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* ============ STUDIO STRIP ============ */}
-      <section className="bg-ivory">
-        <div className="container-x pt-24 md:pt-32">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeading
-              eyebrow="Inside the studio"
-              title="A little of what a visit looks like."
-            />
-            <Reveal delay={0.1}>
-              <Link href="/gallery" className="btn btn-outline shrink-0">
-                Open the gallery <ArrowRight size={18} />
-              </Link>
+          <div className="text-center">
+            <Reveal>
+              <p className="eyebrow eyebrow-quiet">A few favourites</p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Ornament className="mt-6" />
             </Reveal>
           </div>
-        </div>
-        <div className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {[BRAND.facial, IMAGES.facialMask, BRAND.ivWellness, IMAGES.spaStill].map(
-            (img, i) => (
-              <Reveal
-                key={i}
-                delay={i * 0.06}
-                className="group relative aspect-square overflow-hidden"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-[1100ms] group-hover:scale-105"
-                  style={{
-                    transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
-                  }}
-                />
-                <div className="absolute inset-0 bg-teal-900/0 transition-colors duration-500 group-hover:bg-teal-900/15" />
-              </Reveal>
-            )
-          )}
-        </div>
-      </section>
 
-      {/* ============ FACIAL MENU TEASER ============ */}
-      <section className="bg-ivory">
-        <div className="container-x py-24 md:py-32">
-          <div className="card-surface overflow-hidden rounded-[var(--radius-xl2)] lg:grid lg:grid-cols-[1fr_1.1fr]">
-            <div className="relative min-h-[18rem] lg:min-h-full">
-              <Image
-                src={IMAGES.facialCloseUp.src}
-                alt={IMAGES.facialCloseUp.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
-              />
-              <Credit
-                author={IMAGES.facialCloseUp.author}
-                link={IMAGES.facialCloseUp.link}
-                light
-                className="absolute bottom-3 right-3"
-              />
-            </div>
-            <div className="p-8 sm:p-12">
-              <p className="eyebrow">Facials from US$30</p>
-              <h2 className="mt-5 font-display text-[2rem] leading-tight text-teal-800 sm:text-4xl">
-                {facials.name}
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-stone text-pretty">
-                {facials.detail}
-              </p>
-              <ul className="mt-8 space-y-3">
-                {byCategory("facials").map((t) => (
-                  <li
-                    key={t.slug}
-                    className="flex items-baseline justify-between gap-4 border-b border-teal-700/10 pb-3 text-sm"
-                  >
-                    <span className="text-teal-800">{t.name}</span>
-                    <span className="font-display text-lg text-teal-700">
-                      {formatPrice(t)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/treatments#facials"
-                className="link-underline mt-8 inline-flex items-center gap-2 font-medium text-teal-700"
-              >
-                See the full facial menu <ArrowUpRight size={18} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ INVITATION ============ */}
-      <section className="bg-cream">
-        <div className="container-x py-24 md:py-32">
-          <Reveal className="relative overflow-hidden rounded-[var(--radius-xl2)]">
-            <div className="absolute inset-0">
-              <Image
-                src={IMAGES.faceCream.src}
-                alt={IMAGES.faceCream.alt}
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-teal-900/80" />
-            </div>
-            <div className="relative px-6 py-20 text-center md:px-16 md:py-28">
-              <Sparkles
-                size={36}
-                className="mx-auto text-gold-400"
-                strokeWidth={1.2}
-              />
-              <p className="mx-auto mt-6 max-w-2xl font-display text-3xl leading-snug text-cream text-balance sm:text-4xl">
-                Good skin is not an event. It is a series of small, well-judged
-                decisions — made with someone who knows what they are doing.
-              </p>
-              <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link href="/booking" className="btn btn-gold">
-                  Book your consultation
-                </Link>
-                <Link href="/contact" className="btn btn-ghost-light">
-                  Ask us a question
-                </Link>
-              </div>
-            </div>
-            <Credit
-              author={IMAGES.faceCream.author}
-              link={IMAGES.faceCream.link}
-              light
-              className="absolute bottom-3 right-3"
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ LOCATIONS ============ */}
-      <section className="bg-ivory">
-        <div className="container-x py-20 md:py-24">
-          <SectionHeading eyebrow="Find us" title="Two studios, one standard." />
-          <Stagger className="mt-12 grid gap-7 md:grid-cols-2">
-            {BRANCHES.map((b) => (
-              <StaggerItem
-                key={b.slug}
-                className="card-surface hover-lift rounded-[var(--radius-xl2)] p-8"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="eyebrow">
-                      {b.isPrimary ? "Main studio" : "Also at"}
-                    </p>
-                    <h3 className="mt-4 font-display text-2xl text-teal-800">
-                      {b.city} · {b.name}
-                    </h3>
-                  </div>
-                  <MapPin
-                    size={22}
-                    className="shrink-0 text-gold-500"
-                    strokeWidth={1.5}
-                  />
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-stone">
-                  {b.line1}
-                  <br />
-                  {b.line2}
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-5 text-sm">
-                  <a
-                    href={`tel:${b.phoneHref}`}
-                    className="link-underline font-medium text-teal-700"
-                  >
-                    {b.phone}
-                  </a>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                      b.mapQuery
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline text-stone"
-                  >
-                    Open in Maps
-                  </a>
+          <Stagger className="mx-auto mt-14 grid max-w-4xl gap-x-14 gap-y-1 sm:grid-cols-2">
+            {snapshot.map((t) => (
+              <StaggerItem key={t.slug}>
+                <div className="flex items-baseline gap-3 border-b border-gold-500/15 py-4">
+                  <span className="text-[0.95rem] text-charcoal">{t.name}</span>
+                  <span className="h-px flex-1 bg-gold-500/20" />
+                  <span className="font-display text-[1.15rem] text-teal-700">
+                    {t.price === null ? "POA" : `${SITE.currency}${t.price}`}
+                  </span>
                 </div>
               </StaggerItem>
             ))}
           </Stagger>
-          <Reveal delay={0.2}>
-            <p className="mt-10 text-sm text-mist">
-              Prefer to talk it through first? Call{" "}
-              <a
-                href={`tel:${SITE.phoneHref}`}
-                className="link-underline text-teal-700"
-              >
-                {SITE.phone}
-              </a>{" "}
-              or email{" "}
-              <a
-                href={`mailto:${SITE.email}`}
-                className="link-underline text-teal-700"
-              >
-                {SITE.email}
-              </a>
-              .
+
+          <Reveal delay={0.1}>
+            <p className="mt-10 text-center text-sm text-mist">
+              From {SITE.currency}
+              {lowestPrice}. Prices confirmed at consultation.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ LOCATIONS — address and number, nothing else ============ */}
+      <section className="bg-cream">
+        <div className="container-x py-24 md:py-32">
+          <div className="text-center">
+            <Reveal>
+              <p className="eyebrow eyebrow-quiet">Find us</p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Ornament className="mt-6" />
+            </Reveal>
+          </div>
+
+          <Stagger className="mt-14 grid gap-6 md:grid-cols-2">
+            {BRANCHES.map((b, i) => {
+              const img = i === 0 ? IMAGES.warmRoom : IMAGES.cabinet;
+              return (
+                <StaggerItem key={b.slug}>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapQuery)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group hover-lift card-surface block overflow-hidden rounded-[var(--radius-xl2)]"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent" />
+                      <h3 className="absolute bottom-5 left-6 font-display text-2xl text-cream">
+                        {b.city}
+                      </h3>
+                    </div>
+                    <div className="p-6">
+                      <p className="flex items-start gap-2.5 text-sm leading-relaxed text-stone">
+                        <MapPin
+                          size={16}
+                          strokeWidth={1.5}
+                          className="mt-0.5 shrink-0 text-gold-500"
+                        />
+                        <span>
+                          {b.line1}
+                          <br />
+                          {b.line2}
+                        </span>
+                      </p>
+                      <p className="mt-3 flex items-center gap-2.5 text-sm text-stone">
+                        <Phone
+                          size={16}
+                          strokeWidth={1.5}
+                          className="shrink-0 text-gold-500"
+                        />
+                        {b.phone}
+                      </p>
+                    </div>
+                  </a>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ============ CLOSING ============ */}
+      <section className="relative isolate overflow-hidden bg-teal-800 text-cream">
+        <Parallax className="absolute inset-0" distance={60}>
+          <Image
+            src={IMAGES.eucalyptus.src}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.14]"
+          />
+        </Parallax>
+
+        <div className="container-x relative py-24 text-center md:py-28">
+          <Reveal>
+            <Ornament light />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="mt-8 font-display text-[2rem] text-cream text-balance sm:text-[2.6rem]">
+              Come and see us.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link href="/booking" className="btn btn-gold">
+                Book now
+              </Link>
+              <a href={`tel:${SITE.phoneHref}`} className="btn btn-outline-gold">
+                {SITE.phone}
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>
