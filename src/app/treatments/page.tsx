@@ -28,14 +28,14 @@ export default function TreatmentsPage() {
       />
 
       {/* Jump menu */}
-      <section className="border-b border-teal-700/10 bg-cream">
+      <section className="border-b border-brown-700/10 bg-cream">
         <div className="container-x py-8">
           <div className="flex flex-wrap gap-2.5">
             {CATEGORIES.map((c) => (
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="rounded-full border border-teal-700/15 px-4 py-2 text-sm text-stone transition-all duration-500 hover:-translate-y-0.5 hover:border-teal-700/40 hover:text-teal-700"
+                className="rounded-full border border-brown-700/15 px-4 py-2 text-sm text-stone transition-all duration-500 hover:-translate-y-0.5 hover:border-brown-700/40 hover:text-brown-700"
                 style={{
                   transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
                 }}
@@ -92,7 +92,7 @@ export default function TreatmentsPage() {
                 />
                 {c.notes.length ? (
                   <Reveal delay={0.18}>
-                    <ul className="mt-7 space-y-3 rounded-2xl bg-teal-700/5 p-5">
+                    <ul className="mt-7 space-y-3 rounded-2xl bg-brown-700/5 p-5">
                       {c.notes.map((n) => (
                         <li
                           key={n}
@@ -126,7 +126,7 @@ export default function TreatmentsPage() {
       ))}
 
       {/* Standing note */}
-      <section className="bg-teal-800 text-cream">
+      <section className="bg-brown-800 text-cream">
         <div className="container-x py-20 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
@@ -137,7 +137,7 @@ export default function TreatmentsPage() {
                 intro={CONSULT_NOTE}
               />
               <Reveal delay={0.16}>
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-teal-100/70 text-pretty">
+                <p className="mt-5 max-w-xl text-sm leading-relaxed text-brown-100/70 text-pretty">
                   Advanced skin treatments, injectables, laser services and IV
                   infusions are provided subject to assessment. We will always
                   tell you if a treatment is not right for you — and what would
@@ -150,7 +150,7 @@ export default function TreatmentsPage() {
                 <p className="font-display text-2xl text-cream">
                   Not sure what you need?
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-teal-100/75 text-pretty">
+                <p className="mt-3 text-sm leading-relaxed text-brown-100/75 text-pretty">
                   Send a request with a note about what is bothering you. We
                   will suggest where to start — no obligation.
                 </p>

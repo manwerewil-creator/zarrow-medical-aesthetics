@@ -45,12 +45,12 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="card-surface hover-lift flex items-center gap-4 rounded-2xl p-5"
                   >
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brown-50 text-brown-600">
                       <MessageCircle size={19} strokeWidth={1.6} />
                     </span>
                     <span>
                       <span className="block text-sm text-mist">WhatsApp</span>
-                      <span className="block font-medium text-teal-800">
+                      <span className="block font-medium text-brown-800">
                         {SITE.phone}
                       </span>
                     </span>
@@ -62,12 +62,12 @@ export default function ContactPage() {
                     href={`tel:${SITE.phoneHref}`}
                     className="card-surface hover-lift flex items-center gap-4 rounded-2xl p-5"
                   >
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brown-50 text-brown-600">
                       <Phone size={19} strokeWidth={1.6} />
                     </span>
                     <span>
                       <span className="block text-sm text-mist">Call us</span>
-                      <span className="block font-medium text-teal-800">
+                      <span className="block font-medium text-brown-800">
                         {SITE.phone}
                       </span>
                       <span className="block text-sm text-stone">
@@ -82,12 +82,12 @@ export default function ContactPage() {
                     href={`mailto:${SITE.email}`}
                     className="card-surface hover-lift flex items-center gap-4 rounded-2xl p-5"
                   >
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brown-50 text-brown-600">
                       <Mail size={19} strokeWidth={1.6} />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-sm text-mist">Email</span>
-                      <span className="block break-all font-medium text-teal-800">
+                      <span className="block break-all font-medium text-brown-800">
                         {SITE.email}
                       </span>
                     </span>
@@ -96,7 +96,7 @@ export default function ContactPage() {
               </Stagger>
 
               <Reveal delay={0.2}>
-                <div className="mt-10 rounded-2xl bg-teal-700/5 p-6">
+                <div className="mt-10 rounded-2xl bg-brown-700/5 p-6">
                   <p className="text-sm leading-relaxed text-stone text-pretty">
                     Ready to book rather than ask? The booking form captures
                     everything we need to confirm a time.
@@ -136,7 +136,7 @@ export default function ContactPage() {
                       <p className="eyebrow">
                         {b.isPrimary ? "Main studio" : "Also at"}
                       </p>
-                      <h3 className="mt-4 font-display text-2xl text-teal-800">
+                      <h3 className="mt-4 font-display text-2xl text-brown-800">
                         {b.city} · {b.name}
                       </h3>
                     </div>
@@ -154,7 +154,7 @@ export default function ContactPage() {
                   <div className="mt-6 flex flex-wrap items-center gap-5 text-sm">
                     <a
                       href={`tel:${b.phoneHref}`}
-                      className="link-underline font-medium text-teal-700"
+                      className="link-underline font-medium text-brown-700"
                     >
                       {b.phone}
                     </a>

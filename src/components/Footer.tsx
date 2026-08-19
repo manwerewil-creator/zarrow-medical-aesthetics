@@ -21,11 +21,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-teal-900 text-teal-100/80">
+    <footer className="relative overflow-hidden bg-brown-900 text-brown-100/80">
       {/* Soft ambient wash so the dark block never reads flat */}
       <div
         aria-hidden
-        className="animate-aura pointer-events-none absolute -left-40 -top-40 h-[28rem] w-[28rem] rounded-full bg-teal-700/40 blur-3xl"
+        className="animate-aura pointer-events-none absolute -left-40 -top-40 h-[28rem] w-[28rem] rounded-full bg-brown-700/40 blur-3xl"
       />
       <div
         aria-hidden
@@ -158,14 +158,14 @@ export function Footer() {
         </div>
 
         <div className="mt-16 rounded-2xl border border-white/10 bg-white/5 p-6">
-          <p className="text-xs leading-relaxed text-teal-100/65 text-pretty">
+          <p className="text-xs leading-relaxed text-brown-100/65 text-pretty">
             {CONSULT_NOTE} Advanced skin treatments, injectables, laser services
             and IV infusions are provided subject to assessment. Nothing on this
             site is medical advice, and no outcome is guaranteed.
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-teal-100/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-brown-100/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {SITE.name}. All rights reserved.
           </p>
@@ -191,7 +191,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-teal-100/80 transition-all duration-500 hover:-translate-y-0.5 hover:border-gold-400/60 hover:text-gold-300"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-brown-100/80 transition-all duration-500 hover:-translate-y-0.5 hover:border-gold-400/60 hover:text-gold-300"
       style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
     >
       {children}

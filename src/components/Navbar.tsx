@@ -41,9 +41,9 @@ export function Navbar() {
         flips the logo to white) would leave the mark invisible.
       */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 max-sm:bg-cream/90 max-sm:shadow-[0_1px_0_rgba(39,82,79,0.08)] max-sm:backdrop-blur-md ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 max-sm:bg-cream/90 max-sm:shadow-[0_1px_0_rgba(90,65,42,0.08)] max-sm:backdrop-blur-md ${
           solid
-            ? "bg-cream/90 backdrop-blur-md shadow-[0_1px_0_rgba(39,82,79,0.08)]"
+            ? "bg-cream/90 backdrop-blur-md shadow-[0_1px_0_rgba(90,65,42,0.08)]"
             : "bg-transparent"
         }`}
         style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
@@ -84,8 +84,8 @@ export function Navbar() {
                   className={`link-underline text-[0.94rem] tracking-wide transition-colors ${
                     solid
                       ? active
-                        ? "text-teal-700"
-                        : "text-stone hover:text-teal-700"
+                        ? "text-brown-700"
+                        : "text-stone hover:text-brown-700"
                       : "text-cream/85 hover:text-white"
                   }`}
                 >
@@ -100,7 +100,7 @@ export function Navbar() {
               href={`tel:${SITE.phoneHref}`}
               className={`hidden items-center gap-2 text-sm tracking-wide transition-colors sm:inline-flex ${
                 solid
-                  ? "text-stone hover:text-teal-700"
+                  ? "text-stone hover:text-brown-700"
                   : "text-cream/85 hover:text-white"
               }`}
             >
@@ -122,9 +122,9 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors max-sm:text-teal-800 lg:hidden ${
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors max-sm:text-brown-800 lg:hidden ${
                 solid
-                  ? "text-teal-800 hover:bg-teal-700/8"
+                  ? "text-brown-800 hover:bg-brown-700/8"
                   : "text-cream hover:bg-white/12"
               }`}
             >
@@ -170,7 +170,7 @@ export function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="block py-3 font-display text-4xl text-teal-800"
+                      className="block py-3 font-display text-4xl text-brown-800"
                     >
                       {link.label}
                     </Link>

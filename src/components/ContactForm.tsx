@@ -44,15 +44,15 @@ export function ContactForm() {
   if (status === "done") {
     return (
       <div className="card-surface rounded-[var(--radius-xl2)] p-8 text-center sm:p-10">
-        <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+        <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brown-50 text-brown-600">
           <Check size={26} strokeWidth={1.6} />
         </span>
-        <h3 className="mt-5 font-display text-2xl text-teal-800">
+        <h3 className="mt-5 font-display text-2xl text-brown-800">
           Message sent
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-stone text-pretty">
           Thank you, {name.split(" ")[0]}. We have your message and will reply to{" "}
-          <span className="text-teal-700">{email}</span> as soon as we can.
+          <span className="text-brown-700">{email}</span> as soon as we can.
         </p>
       </div>
     );
@@ -95,7 +95,7 @@ export function ContactForm() {
         <div>
           <label
             htmlFor="interest"
-            className="block text-sm font-medium text-teal-700"
+            className="block text-sm font-medium text-brown-700"
           >
             What is it about?
           </label>
@@ -103,7 +103,7 @@ export function ContactForm() {
             id="interest"
             value={interest}
             onChange={(e) => setInterest(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+            className="mt-2 w-full rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
           >
             <option value="">General enquiry</option>
             {CATEGORIES.map((c) => (
@@ -122,7 +122,7 @@ export function ContactForm() {
       <div className="mt-5">
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-teal-700"
+          className="block text-sm font-medium text-brown-700"
         >
           Message <span className="text-gold-600">*</span>
         </label>
@@ -133,7 +133,7 @@ export function ContactForm() {
           rows={5}
           required
           placeholder="Tell us what you're looking for and we'll point you in the right direction."
-          className="mt-2 w-full resize-y rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+          className="mt-2 w-full resize-y rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
         />
       </div>
 
@@ -190,7 +190,7 @@ function Field({
   const id = `contact-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-teal-700">
+      <label htmlFor={id} className="block text-sm font-medium text-brown-700">
         {label} {required ? <span className="text-gold-600">*</span> : null}
       </label>
       <input
@@ -201,7 +201,7 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+        className="mt-2 w-full rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
       />
     </div>
   );

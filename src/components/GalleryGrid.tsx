@@ -67,7 +67,7 @@ export function GalleryGrid({ images }: { images: Img[] }) {
               className="h-auto w-full object-cover transition-transform duration-[1100ms] group-hover:scale-[1.05]"
               style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
             />
-            <span className="absolute inset-0 bg-teal-900/0 transition-colors duration-500 group-hover:bg-teal-900/15" />
+            <span className="absolute inset-0 bg-brown-900/0 transition-colors duration-500 group-hover:bg-brown-900/15" />
           </motion.button>
         ))}
       </div>
@@ -79,7 +79,7 @@ export function GalleryGrid({ images }: { images: Img[] }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-teal-900/95 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-brown-900/95 p-4 backdrop-blur-sm"
             onClick={close}
             role="dialog"
             aria-modal="true"

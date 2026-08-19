@@ -34,7 +34,7 @@ export function WhatsAppFab() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.85, y: 12 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="group fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 rounded-full bg-teal-700 py-3.5 pl-4 pr-5 text-cream shadow-[0_16px_36px_-14px_rgba(18,41,38,0.7)] transition-colors hover:bg-teal-800 sm:bottom-7 sm:right-7"
+          className="group fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 rounded-full bg-brown-700 py-3.5 pl-4 pr-5 text-cream shadow-[0_16px_36px_-14px_rgba(18,41,38,0.7)] transition-colors hover:bg-brown-800 sm:bottom-7 sm:right-7"
         >
           <MessageCircle size={20} strokeWidth={1.7} />
           <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm opacity-0 transition-all duration-500 group-hover:max-w-[10rem] group-hover:opacity-100">

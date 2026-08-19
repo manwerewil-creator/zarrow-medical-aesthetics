@@ -40,7 +40,7 @@ export function SectionHeading({
       <Reveal delay={0.06}>
         <h2
           className={`mt-6 font-display text-[2.05rem] leading-[1.14] sm:text-[2.6rem] lg:text-[3.1rem] text-balance ${
-            light ? "text-cream" : "text-teal-800"
+            light ? "text-cream" : "text-brown-800"
           }`}
         >
           {title}
@@ -50,7 +50,7 @@ export function SectionHeading({
         <Reveal delay={0.12}>
           <p
             className={`mt-6 text-base leading-relaxed text-pretty ${
-              light ? "text-teal-100/80" : "text-stone"
+              light ? "text-brown-100/80" : "text-stone"
             }`}
           >
             {intro}

@@ -16,7 +16,7 @@ export function PriceList({ category }: { category: CategoryId }) {
   const items = byCategory(category);
 
   return (
-    <Stagger as="div" className="divide-y divide-teal-700/10">
+    <Stagger as="div" className="divide-y divide-brown-700/10">
       {items.map((t) => (
         <StaggerItem key={t.slug}>
           <Row treatment={t} />
@@ -30,11 +30,11 @@ function Row({ treatment: t }: { treatment: Treatment }) {
   return (
     <Link
       href={`/booking?treatment=${t.slug}`}
-      className="group flex items-baseline gap-4 py-5 transition-colors duration-500 hover:bg-teal-50/60"
+      className="group flex items-baseline gap-4 py-5 transition-colors duration-500 hover:bg-brown-50/60"
       style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
     >
       <span className="min-w-0 flex-1">
-        <span className="block text-[1.02rem] text-teal-800 transition-colors group-hover:text-teal-600">
+        <span className="block text-[1.02rem] text-brown-800 transition-colors group-hover:text-brown-600">
           {t.name}
         </span>
         <span className="mt-1 block text-sm leading-relaxed text-stone text-pretty">
@@ -44,7 +44,7 @@ function Row({ treatment: t }: { treatment: Treatment }) {
 
       <span
         aria-hidden
-        className="hidden h-px flex-1 bg-[repeating-linear-gradient(to_right,rgba(39,82,79,0.22)_0_2px,transparent_2px_6px)] sm:block"
+        className="hidden h-px flex-1 bg-[repeating-linear-gradient(to_right,rgba(90,65,42,0.22)_0_2px,transparent_2px_6px)] sm:block"
       />
 
       <span className="shrink-0 text-right">
@@ -53,7 +53,7 @@ function Row({ treatment: t }: { treatment: Treatment }) {
             US${t.wasPrice}
           </span>
         ) : null}
-        <span className="font-display text-xl text-teal-700">
+        <span className="font-display text-xl text-brown-700">
           {formatPrice(t)}
         </span>
         {t.priceNote === "promotional" ? (

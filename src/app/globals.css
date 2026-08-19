@@ -14,17 +14,17 @@
   --color-paper: #fffdfa;
   --color-sand: #ece3d5;
 
-  /* Primary — Teal (the logo's ring colour) */
-  --color-teal-50: #eff5f4;
-  --color-teal-100: #d8e8e6;
-  --color-teal-200: #b1d0cd;
-  --color-teal-300: #85b3af;
-  --color-teal-400: #5c9490;
-  --color-teal-500: #427d78;
-  --color-teal-600: #336562;
-  --color-teal-700: #27524f;
-  --color-teal-800: #1c3d3b;
-  --color-teal-900: #122926;
+  /* Primary — warm brown, taken from the candlelit reference hero */
+  --color-brown-50: #f8f3ee;
+  --color-brown-100: #eee2d6;
+  --color-brown-200: #dcc6b0;
+  --color-brown-300: #c4a684;
+  --color-brown-400: #a8845e;
+  --color-brown-500: #8d6845;
+  --color-brown-600: #715235;
+  --color-brown-700: #5a412a;
+  --color-brown-800: #422f1f;
+  --color-brown-900: #2b1e14;
 
   /* Accent — champagne gold */
   --color-gold-100: #f6eedd;
@@ -32,16 +32,16 @@
   --color-gold-300: #e0cba1;
   --color-gold-400: #d5b981;
   --color-gold-500: #be9d5b;
-  --color-gold-600: #9b7d42;
+  --color-gold-600: #96763d;
 
   /* Deep neutral for the luxe dark bands */
-  --color-ink: #0f1211;
-  --color-ink-soft: #1a1f1d;
+  --color-ink: #14100d;
+  --color-ink-soft: #221b15;
 
   /* Text / neutral */
-  --color-charcoal: #262b2b;
-  --color-stone: #5d6564;
-  --color-mist: #8b9391;
+  --color-charcoal: #2a2320;
+  --color-stone: #6b5f56;
+  --color-mist: #9a8d82;
 
   /* Typography */
   --font-display: var(--font-prata), "Times New Roman", Georgia, serif;
@@ -73,7 +73,7 @@
     font-weight: 400;
     letter-spacing: -0.012em;
     line-height: 1.14;
-    color: var(--color-teal-800);
+    color: var(--color-brown-800);
   }
 
   ::selection {
@@ -157,13 +157,13 @@
     white-space: nowrap;
   }
   .btn-primary {
-    background: var(--color-teal-700);
+    background: var(--color-brown-700);
     color: var(--color-cream);
   }
   .btn-primary:hover {
-    background: var(--color-teal-800);
+    background: var(--color-brown-800);
     transform: translateY(-2px);
-    box-shadow: 0 16px 34px -14px rgb(18 41 38 / 0.55);
+    box-shadow: 0 16px 34px -14px rgb(43 30 20 / 0.55);
   }
   .btn-gold {
     background: var(--color-gold-400);
@@ -175,14 +175,14 @@
     box-shadow: 0 16px 34px -14px rgb(190 157 91 / 0.7);
   }
   .btn-outline {
-    border: 1px solid color-mix(in srgb, var(--color-teal-700) 30%, transparent);
-    color: var(--color-teal-700);
+    border: 1px solid color-mix(in srgb, var(--color-brown-700) 30%, transparent);
+    color: var(--color-brown-700);
     background: transparent;
   }
   .btn-outline:hover {
-    background: var(--color-teal-700);
+    background: var(--color-brown-700);
     color: var(--color-cream);
-    border-color: var(--color-teal-700);
+    border-color: var(--color-brown-700);
     transform: translateY(-2px);
   }
   .btn-outline-gold {
@@ -224,7 +224,7 @@
     background: var(--color-paper);
     border: 1px solid color-mix(in srgb, var(--color-gold-500) 16%, transparent);
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset,
-      0 22px 48px -34px rgb(18 41 38 / 0.4);
+      0 22px 48px -34px rgb(43 30 20 / 0.4);
   }
 
   .hover-lift {
@@ -233,7 +233,7 @@
   .hover-lift:hover {
     transform: translateY(-7px);
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset,
-      0 36px 68px -36px rgb(18 41 38 / 0.45);
+      0 36px 68px -36px rgb(43 30 20 / 0.45);
   }
 
   .text-balance { text-wrap: balance; }

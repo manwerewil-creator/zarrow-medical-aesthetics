@@ -76,7 +76,7 @@ export default function AboutPage() {
             <Reveal delay={0.22}>
               <Link
                 href="/treatments"
-                className="link-underline mt-8 inline-flex items-center gap-2 font-medium text-teal-700"
+                className="link-underline mt-8 inline-flex items-center gap-2 font-medium text-brown-700"
               >
                 See what we offer <ArrowRight size={18} />
               </Link>
@@ -129,10 +129,10 @@ export default function AboutPage() {
                 key={v.title}
                 className="card-surface hover-lift rounded-[var(--radius-xl2)] p-8"
               >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brown-50 text-brown-600">
                   <v.icon size={20} strokeWidth={1.6} />
                 </span>
-                <h3 className="mt-6 font-display text-2xl text-teal-800">
+                <h3 className="mt-6 font-display text-2xl text-brown-800">
                   {v.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-stone text-pretty">
@@ -145,7 +145,7 @@ export default function AboutPage() {
       </section>
 
       {/* What we cover */}
-      <section className="relative overflow-hidden bg-teal-800 text-cream">
+      <section className="relative overflow-hidden bg-brown-800 text-cream">
         <div className="absolute inset-0 opacity-[0.12]">
           <Image
             src={BRAND.facial.src}
@@ -167,10 +167,10 @@ export default function AboutPage() {
             {CATEGORIES.map((c) => (
               <StaggerItem
                 key={c.id}
-                className="bg-teal-800 p-8 transition-colors duration-500 hover:bg-teal-700"
+                className="bg-brown-800 p-8 transition-colors duration-500 hover:bg-brown-700"
               >
                 <h3 className="font-display text-xl text-cream">{c.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-teal-100/70 text-pretty">
+                <p className="mt-3 text-sm leading-relaxed text-brown-100/70 text-pretty">
                   {c.blurb}
                 </p>
                 <Link
@@ -219,7 +219,7 @@ export default function AboutPage() {
           <Reveal delay={0.2}>
             <div className="card-surface mt-16 flex flex-col items-start justify-between gap-6 rounded-[var(--radius-xl2)] p-8 sm:flex-row sm:items-center sm:p-10">
               <div>
-                <h3 className="font-display text-2xl text-teal-800">
+                <h3 className="font-display text-2xl text-brown-800">
                   Come and meet us.
                 </h3>
                 <p className="mt-2 text-sm text-stone">

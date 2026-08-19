@@ -32,9 +32,9 @@ export function TreatmentCard({
           className="object-cover transition-transform duration-[1100ms] group-hover:scale-[1.06]"
           style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/45 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brown-900/45 via-transparent to-transparent" />
         {from !== null ? (
-          <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-xs font-medium tracking-wide text-teal-700">
+          <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-xs font-medium tracking-wide text-brown-700">
             From US${from}
           </span>
         ) : null}
@@ -47,13 +47,13 @@ export function TreatmentCard({
       </div>
 
       <div className="flex flex-1 flex-col p-7">
-        <h3 className="font-display text-[1.6rem] leading-tight text-teal-800">
+        <h3 className="font-display text-[1.6rem] leading-tight text-brown-800">
           {category.name}
         </h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-stone text-pretty">
           {category.blurb}
         </p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-teal-700">
+        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brown-700">
           See the menu
           <ArrowUpRight
             size={16}

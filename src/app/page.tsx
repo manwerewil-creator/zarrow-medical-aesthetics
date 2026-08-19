@@ -99,7 +99,7 @@ export default function HomePage() {
         <div className="container-x pb-14 pt-9 text-center">
           <p className="eyebrow eyebrow-quiet animate-fade-up">Harare · Kwekwe</p>
           <h1
-            className="animate-fade-up mt-5 font-display text-[2.5rem] leading-[1.08] text-teal-800 text-balance"
+            className="animate-fade-up mt-5 font-display text-[2.5rem] leading-[1.08] text-brown-800 text-balance"
             style={{ animationDelay: "80ms" }}
           >
             Refined aesthetic care.
@@ -166,7 +166,7 @@ export default function HomePage() {
           {[...tickerItems, ...tickerItems].map((name, i) => (
             <span
               key={i}
-              className="flex items-center gap-10 text-[0.7rem] uppercase tracking-[0.3em] text-teal-700/70"
+              className="flex items-center gap-10 text-[0.7rem] uppercase tracking-[0.3em] text-brown-700/70"
             >
               {name}
               <span className="h-1 w-1 rounded-full bg-gold-500" />
@@ -308,7 +308,7 @@ export default function HomePage() {
                 <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full border border-gold-500/35 text-gold-600">
                   <item.icon size={24} strokeWidth={1.3} />
                 </span>
-                <p className="mt-5 text-[0.72rem] uppercase tracking-[0.24em] text-teal-800">
+                <p className="mt-5 text-[0.72rem] uppercase tracking-[0.24em] text-brown-800">
                   {item.label}
                 </p>
               </StaggerItem>
@@ -362,7 +362,7 @@ export default function HomePage() {
                 <div className="flex items-baseline gap-3 border-b border-gold-500/15 py-4">
                   <span className="text-[0.95rem] text-charcoal">{t.name}</span>
                   <span className="h-px flex-1 bg-gold-500/20" />
-                  <span className="font-display text-[1.15rem] text-teal-700">
+                  <span className="font-display text-[1.15rem] text-brown-700">
                     {t.price === null ? "POA" : `${SITE.currency}${t.price}`}
                   </span>
                 </div>
@@ -446,7 +446,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ CLOSING ============ */}
-      <section className="relative isolate overflow-hidden bg-teal-800 text-cream">
+      <section className="relative isolate overflow-hidden bg-brown-800 text-cream">
         <Parallax className="absolute inset-0" distance={60}>
           <Image
             src={IMAGES.eucalyptus.src}

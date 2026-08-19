@@ -19,7 +19,7 @@ export function Credit({
   const classes = `pointer-events-auto select-none rounded-full px-2.5 py-1 text-[0.62rem] tracking-wide backdrop-blur-sm transition-opacity ${
     light
       ? "bg-black/25 text-white/70 hover:text-white"
-      : "bg-white/70 text-stone hover:text-teal-700"
+      : "bg-white/70 text-stone hover:text-brown-700"
   } ${className}`;
 
   if (!link) return <span className={classes}>{label}</span>;

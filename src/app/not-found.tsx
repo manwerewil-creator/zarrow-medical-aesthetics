@@ -6,7 +6,7 @@ export default function NotFound() {
     <section className="bg-ivory">
       <div className="container-x flex min-h-[80svh] flex-col justify-center py-32">
         <p className="eyebrow">404</p>
-        <h1 className="animate-fade-up mt-6 max-w-2xl font-display text-[2.75rem] leading-[1.05] text-teal-800 text-balance sm:text-6xl">
+        <h1 className="animate-fade-up mt-6 max-w-2xl font-display text-[2.75rem] leading-[1.05] text-brown-800 text-balance sm:text-6xl">
           This page has stepped out.
         </h1>
         <p className="mt-5 max-w-lg text-base leading-relaxed text-stone text-pretty">
@@ -29,7 +29,7 @@ export default function NotFound() {
               <li key={c.id}>
                 <Link
                   href={`/treatments#${c.id}`}
-                  className="link-underline text-stone hover:text-teal-700"
+                  className="link-underline text-stone hover:text-brown-700"
                 >
                   {c.shortName}
                 </Link>

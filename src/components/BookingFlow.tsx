@@ -127,10 +127,10 @@ export function BookingFlow() {
   if (status === "done") {
     return (
       <div className="card-surface mx-auto max-w-2xl rounded-[var(--radius-xl2)] p-8 text-center sm:p-12">
-        <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+        <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-brown-50 text-brown-600">
           <Sparkles size={28} strokeWidth={1.5} />
         </span>
-        <h2 className="mt-6 font-display text-3xl text-teal-800">
+        <h2 className="mt-6 font-display text-3xl text-brown-800">
           Request received
         </h2>
         <p className="mt-3 text-stone text-pretty">
@@ -142,11 +142,11 @@ export function BookingFlow() {
         <div className="mt-8 rounded-2xl bg-ivory p-6 text-left">
           <div className="flex items-center justify-between">
             <span className="text-sm text-stone">Reference</span>
-            <span className="font-mono font-semibold text-teal-700">
+            <span className="font-mono font-semibold text-brown-700">
               {reference}
             </span>
           </div>
-          <hr className="my-4 border-teal-700/10" />
+          <hr className="my-4 border-brown-700/10" />
           <SummaryRow label="Treatment" value={treatment.name} />
           <SummaryRow label="Studio" value={`${branch.city} · ${branch.name}`} />
           <SummaryRow label="Preferred date" value={prettyDate(preferredDate)} />
@@ -156,10 +156,10 @@ export function BookingFlow() {
               TIME_PREFERENCES.find((t) => t.id === timePreference)?.label ?? "—"
             }
           />
-          <hr className="my-4 border-teal-700/10" />
+          <hr className="my-4 border-brown-700/10" />
           <div className="flex items-center justify-between">
-            <span className="font-medium text-teal-800">Guide price</span>
-            <span className="font-display text-2xl text-teal-700">
+            <span className="font-medium text-brown-800">Guide price</span>
+            <span className="font-display text-2xl text-brown-700">
               {formatPrice(treatment)}
             </span>
           </div>
@@ -167,11 +167,11 @@ export function BookingFlow() {
 
         <p className="mt-6 text-sm text-stone text-pretty">
           A confirmation will be sent to{" "}
-          <span className="text-teal-700">{email}</span>. If you would rather
+          <span className="text-brown-700">{email}</span>. If you would rather
           talk it through, call{" "}
           <a
             href={`tel:${SITE.phoneHref}`}
-            className="link-underline text-teal-700"
+            className="link-underline text-brown-700"
           >
             {SITE.phone}
           </a>
@@ -200,23 +200,23 @@ export function BookingFlow() {
                 <span
                   className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-all duration-500 ${
                     done
-                      ? "bg-teal-600 text-cream"
+                      ? "bg-brown-600 text-cream"
                       : active
-                        ? "bg-gold-500 text-teal-900"
-                        : "bg-teal-700/10 text-stone"
+                        ? "bg-gold-500 text-brown-900"
+                        : "bg-brown-700/10 text-stone"
                   }`}
                 >
                   {done ? <Check size={16} /> : i + 1}
                 </span>
                 <span
                   className={`hidden text-sm sm:block ${
-                    active ? "font-medium text-teal-800" : "text-stone"
+                    active ? "font-medium text-brown-800" : "text-stone"
                   }`}
                 >
                   {label}
                 </span>
                 {i < STEPS.length - 1 ? (
-                  <span className="h-px flex-1 bg-teal-700/10" />
+                  <span className="h-px flex-1 bg-brown-700/10" />
                 ) : null}
               </li>
             );
@@ -227,14 +227,14 @@ export function BookingFlow() {
           {/* ---------- STEP 0 ---------- */}
           {step === 0 ? (
             <div>
-              <h2 className="font-display text-2xl text-teal-800">
+              <h2 className="font-display text-2xl text-brown-800">
                 What would you like to book?
               </h2>
 
               <div className="mt-6">
                 <label
                   htmlFor="treatment"
-                  className="block text-sm font-medium text-teal-700"
+                  className="block text-sm font-medium text-brown-700"
                 >
                   Treatment
                 </label>
@@ -242,7 +242,7 @@ export function BookingFlow() {
                   id="treatment"
                   value={treatmentSlug}
                   onChange={(e) => setTreatmentSlug(e.target.value)}
-                  className="mt-2 w-full rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+                  className="mt-2 w-full rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
                 >
                   {CATEGORIES.map((c) => (
                     <optgroup key={c.id} label={c.name}>
@@ -261,7 +261,7 @@ export function BookingFlow() {
               </div>
 
               <div className="mt-7">
-                <p className="text-sm font-medium text-teal-700">Studio</p>
+                <p className="text-sm font-medium text-brown-700">Studio</p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2">
                   {BRANCHES.map((b) => {
                     const selected = b.slug === branchSlug;
@@ -273,14 +273,14 @@ export function BookingFlow() {
                         className={`rounded-2xl border p-4 text-left transition-all duration-500 ${
                           selected
                             ? "border-gold-500 bg-gold-200/20 ring-2 ring-gold-500/25"
-                            : "border-teal-700/12 hover:border-teal-700/30"
+                            : "border-brown-700/12 hover:border-brown-700/30"
                         }`}
                         style={{
                           transitionTimingFunction:
                             "cubic-bezier(0.22,1,0.36,1)",
                         }}
                       >
-                        <span className="flex items-center gap-2 text-sm font-medium text-teal-800">
+                        <span className="flex items-center gap-2 text-sm font-medium text-brown-800">
                           <MapPin size={15} className="text-gold-500" />
                           {b.city}
                         </span>
@@ -297,7 +297,7 @@ export function BookingFlow() {
                 <div>
                   <label
                     htmlFor="date"
-                    className="block text-sm font-medium text-teal-700"
+                    className="block text-sm font-medium text-brown-700"
                   >
                     Preferred date
                   </label>
@@ -307,11 +307,11 @@ export function BookingFlow() {
                     value={preferredDate}
                     min={today}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="mt-2 w-full rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+                    className="mt-2 w-full rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-teal-700">
+                  <p className="text-sm font-medium text-brown-700">
                     Preferred time
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
@@ -322,8 +322,8 @@ export function BookingFlow() {
                         onClick={() => setTimePreference(t.id)}
                         className={`rounded-full border px-3.5 py-2 text-sm transition-all duration-500 ${
                           timePreference === t.id
-                            ? "border-teal-700 bg-teal-700 text-cream"
-                            : "border-teal-700/15 text-stone hover:border-teal-700/40"
+                            ? "border-brown-700 bg-brown-700 text-cream"
+                            : "border-brown-700/15 text-stone hover:border-brown-700/40"
                         }`}
                       >
                         {t.label}
@@ -349,7 +349,7 @@ export function BookingFlow() {
           {/* ---------- STEP 1 ---------- */}
           {step === 1 ? (
             <div>
-              <h2 className="font-display text-2xl text-teal-800">
+              <h2 className="font-display text-2xl text-brown-800">
                 Your details
               </h2>
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -384,7 +384,7 @@ export function BookingFlow() {
               </div>
 
               <fieldset className="mt-6">
-                <legend className="text-sm font-medium text-teal-700">
+                <legend className="text-sm font-medium text-brown-700">
                   Have you visited Zarrow before?
                 </legend>
                 <div className="mt-3 flex gap-2">
@@ -398,8 +398,8 @@ export function BookingFlow() {
                       onClick={() => setFirstVisit(o.id)}
                       className={`rounded-full border px-4 py-2 text-sm transition-all duration-500 ${
                         firstVisit === o.id
-                          ? "border-teal-700 bg-teal-700 text-cream"
-                          : "border-teal-700/15 text-stone hover:border-teal-700/40"
+                          ? "border-brown-700 bg-brown-700 text-cream"
+                          : "border-brown-700/15 text-stone hover:border-brown-700/40"
                       }`}
                     >
                       {o.label}
@@ -411,7 +411,7 @@ export function BookingFlow() {
               <div className="mt-6">
                 <label
                   htmlFor="notes"
-                  className="block text-sm font-medium text-teal-700"
+                  className="block text-sm font-medium text-brown-700"
                 >
                   Anything we should know? (optional)
                 </label>
@@ -421,7 +421,7 @@ export function BookingFlow() {
                   onChange={(e) => setNotes(e.target.value)}
                   rows={4}
                   placeholder="Skin concerns, allergies, pregnancy, medication, recent treatments, an occasion you're preparing for…"
-                  className="mt-2 w-full resize-y rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+                  className="mt-2 w-full resize-y rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
                 />
                 <p className="mt-2 text-xs leading-relaxed text-mist text-pretty">
                   Share only what you are comfortable sending by email. Anything
@@ -452,7 +452,7 @@ export function BookingFlow() {
           {/* ---------- STEP 2 ---------- */}
           {step === 2 ? (
             <div>
-              <h2 className="font-display text-2xl text-teal-800">
+              <h2 className="font-display text-2xl text-brown-800">
                 Review &amp; confirm
               </h2>
               <p className="mt-2 text-sm text-stone text-pretty">
@@ -461,7 +461,7 @@ export function BookingFlow() {
                 payment is taken now.
               </p>
 
-              <dl className="mt-6 divide-y divide-teal-700/10 rounded-2xl bg-ivory px-5">
+              <dl className="mt-6 divide-y divide-brown-700/10 rounded-2xl bg-ivory px-5">
                 <ReviewRow label="Name" value={name} />
                 <ReviewRow label="Email" value={email} />
                 <ReviewRow label="Phone" value={phone} />
@@ -536,14 +536,14 @@ export function BookingFlow() {
               sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-teal-900/50 to-transparent" />
-            <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-xs font-medium text-teal-700">
+            <div className="absolute inset-0 bg-gradient-to-t from-brown-900/50 to-transparent" />
+            <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-xs font-medium text-brown-700">
               {category.shortName}
             </span>
           </div>
 
           <div className="p-6">
-            <h3 className="font-display text-2xl text-teal-800">
+            <h3 className="font-display text-2xl text-brown-800">
               {treatment.name}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-stone text-pretty">
@@ -565,10 +565,10 @@ export function BookingFlow() {
               </li>
             </ul>
 
-            <div className="mt-6 border-t border-teal-700/10 pt-5">
+            <div className="mt-6 border-t border-brown-700/10 pt-5">
               <div className="flex items-baseline justify-between">
-                <span className="font-medium text-teal-800">Guide price</span>
-                <span className="font-display text-2xl text-teal-700">
+                <span className="font-medium text-brown-800">Guide price</span>
+                <span className="font-display text-2xl text-brown-700">
                   {formatPrice(treatment)}
                 </span>
               </div>
@@ -587,7 +587,7 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between py-1.5 text-sm">
       <span className="text-stone">{label}</span>
-      <span className="font-medium text-teal-800">{value}</span>
+      <span className="font-medium text-brown-800">{value}</span>
     </div>
   );
 }
@@ -596,7 +596,7 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-start justify-between gap-6 py-3.5 text-sm">
       <span className="shrink-0 text-stone">{label}</span>
-      <span className="text-right text-teal-800">{value}</span>
+      <span className="text-right text-brown-800">{value}</span>
     </div>
   );
 }
@@ -621,7 +621,7 @@ function Field({
   const id = label.toLowerCase().replace(/[^a-z]+/g, "-");
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-teal-700">
+      <label htmlFor={id} className="block text-sm font-medium text-brown-700">
         {label} {required ? <span className="text-gold-600">*</span> : null}
       </label>
       <input
@@ -632,7 +632,7 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-xl border border-teal-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20"
+        className="mt-2 w-full rounded-xl border border-brown-700/15 bg-cream/60 px-4 py-3 text-charcoal outline-none transition placeholder:text-mist focus:border-brown-500 focus:ring-2 focus:ring-brown-500/20"
       />
     </div>
   );

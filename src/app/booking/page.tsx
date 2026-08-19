@@ -20,7 +20,7 @@ export default function BookingPage() {
             <p className="eyebrow">Booking</p>
           </Reveal>
           <Reveal delay={0.06}>
-            <h1 className="mt-5 max-w-3xl font-display text-[2.5rem] leading-[1.05] text-teal-800 text-balance sm:text-5xl">
+            <h1 className="mt-5 max-w-3xl font-display text-[2.5rem] leading-[1.05] text-brown-800 text-balance sm:text-5xl">
               Request your appointment
             </h1>
           </Reveal>
@@ -31,7 +31,7 @@ export default function BookingPage() {
               taken here. In a hurry? Call{" "}
               <a
                 href={`tel:${SITE.phoneHref}`}
-                className="link-underline text-teal-700"
+                className="link-underline text-brown-700"
               >
                 {SITE.phone}
               </a>

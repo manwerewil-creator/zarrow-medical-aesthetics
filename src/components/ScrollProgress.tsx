@@ -15,7 +15,7 @@ export function ScrollProgress() {
     <motion.div
       aria-hidden
       style={{ scaleX }}
-      className="fixed inset-x-0 top-0 z-[55] h-[2px] origin-left bg-gradient-to-r from-gold-500 via-gold-400 to-teal-400"
+      className="fixed inset-x-0 top-0 z-[55] h-[2px] origin-left bg-gradient-to-r from-gold-500 via-gold-400 to-brown-400"
     />
   );
 }
