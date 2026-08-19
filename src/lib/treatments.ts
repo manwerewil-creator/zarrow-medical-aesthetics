@@ -83,9 +83,12 @@ export const CATEGORIES: Category[] = [
     detail:
       "The IV bar is where Zarrow began. Drips are administered in a quiet lounge setting and are always preceded by a health screening — an infusion is only given once suitability has been confirmed.",
     image: BRAND.ivWellness,
+    // Benefits as stated on Zarrow's own IV price card.
     notes: [
+      "Helps with detoxification and supports the immune system.",
+      "Reduces hyperpigmentation.",
+      "Skin brightening.",
       "A health screening is required before any infusion.",
-      "Allow time to sit comfortably — infusions are not rushed.",
     ],
   },
   {

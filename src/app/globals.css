@@ -2,17 +2,17 @@
 
 /* ============================================================
    Zarrow Medical Aesthetics — Design System
-   Warm clinical-luxury identity:
-   muted teal · warm ivory/cream · gentle gold · soft charcoal
-   Extracted from the brand's own artwork (logo rings, clinic
-   photography) and built on the resorts-template foundation.
+   Quiet resort-luxury: warm ivory · muted teal · champagne gold
+   Typography and palette tuned against the Aviana spa-resort
+   reference (Prata display serif, #d5b981 champagne, near-black).
    ============================================================ */
 
 @theme {
   /* Surfaces — warm off-whites */
   --color-cream: #fbf8f3;
-  --color-ivory: #f2ece2;
+  --color-ivory: #f3ede3;
   --color-paper: #fffdfa;
+  --color-sand: #ece3d5;
 
   /* Primary — Teal (the logo's ring colour) */
   --color-teal-50: #eff5f4;
@@ -26,12 +26,17 @@
   --color-teal-800: #1c3d3b;
   --color-teal-900: #122926;
 
-  /* Accent — gentle gold (the wordmark's sub-line) */
-  --color-gold-200: #ecdcbd;
-  --color-gold-300: #dcc79c;
-  --color-gold-400: #c9ae7c;
-  --color-gold-500: #b0925f;
-  --color-gold-600: #8f764a;
+  /* Accent — champagne gold */
+  --color-gold-100: #f6eedd;
+  --color-gold-200: #ece0c6;
+  --color-gold-300: #e0cba1;
+  --color-gold-400: #d5b981;
+  --color-gold-500: #be9d5b;
+  --color-gold-600: #9b7d42;
+
+  /* Deep neutral for the luxe dark bands */
+  --color-ink: #0f1211;
+  --color-ink-soft: #1a1f1d;
 
   /* Text / neutral */
   --color-charcoal: #262b2b;
@@ -39,13 +44,10 @@
   --color-mist: #8b9391;
 
   /* Typography */
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-prata), "Times New Roman", Georgia, serif;
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
 
-  /* Radius */
   --radius-xl2: 1.25rem;
-
-  /* Easing — the house curve, used everywhere */
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -59,22 +61,24 @@
     background-color: var(--color-cream);
     color: var(--color-charcoal);
     font-family: var(--font-sans);
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
 
+  /* Prata ships a single weight; its elegance comes from size and spacing. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    line-height: 1.08;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    line-height: 1.14;
     color: var(--color-teal-800);
   }
 
   ::selection {
-    background: var(--color-teal-700);
-    color: var(--color-cream);
+    background: var(--color-gold-400);
+    color: var(--color-ink);
   }
 
   :focus-visible {
@@ -82,22 +86,14 @@
     outline-offset: 3px;
   }
 
-  /* Refined, slim scrollbar */
-  ::-webkit-scrollbar {
-    width: 11px;
-    height: 11px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-ivory);
-  }
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--color-ivory); }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-teal-300);
+    background: var(--color-gold-400);
     border: 3px solid var(--color-ivory);
     border-radius: 999px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-teal-500);
-  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-500); }
 }
 
 @layer components {
@@ -108,71 +104,72 @@
     padding-inline: 1.5rem;
   }
   @media (min-width: 1024px) {
-    .container-x {
-      padding-inline: 2.5rem;
-    }
+    .container-x { padding-inline: 2.5rem; }
   }
 
-  /* Eyebrow / kicker label */
+  /* Narrow measure for centred editorial intros */
+  .measure { max-width: 42rem; margin-inline: auto; }
+
+  /* Eyebrow / kicker — fine, wide-tracked, uppercase */
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.24em;
+    gap: 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     color: var(--color-gold-600);
   }
   .eyebrow::before {
     content: "";
-    width: 1.75rem;
+    width: 2rem;
     height: 1px;
     background: var(--color-gold-500);
   }
   .eyebrow.is-centered::after {
     content: "";
-    width: 1.75rem;
+    width: 2rem;
     height: 1px;
     background: var(--color-gold-500);
   }
 
-  /* Buttons */
+  /* Buttons — thin, wide-tracked, unhurried */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
-    padding: 0.85rem 1.6rem;
+    gap: 0.55rem;
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1.05rem 2.1rem;
     border-radius: 999px;
-    transition: all 0.35s var(--ease-soft);
+    transition: all 0.45s var(--ease-soft);
     cursor: pointer;
     white-space: nowrap;
   }
   .btn-primary {
     background: var(--color-teal-700);
     color: var(--color-cream);
-    box-shadow: 0 1px 2px rgb(18 41 38 / 0.25);
   }
   .btn-primary:hover {
     background: var(--color-teal-800);
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px -10px rgb(18 41 38 / 0.5);
+    box-shadow: 0 16px 34px -14px rgb(18 41 38 / 0.55);
   }
   .btn-gold {
-    background: var(--color-gold-500);
-    color: #2b2313;
+    background: var(--color-gold-400);
+    color: var(--color-ink);
   }
   .btn-gold:hover {
-    background: var(--color-gold-400);
+    background: var(--color-gold-300);
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px -10px rgb(176 146 95 / 0.6);
+    box-shadow: 0 16px 34px -14px rgb(190 157 91 / 0.7);
   }
   .btn-outline {
-    border: 1px solid color-mix(in srgb, var(--color-teal-700) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-teal-700) 30%, transparent);
     color: var(--color-teal-700);
     background: transparent;
   }
@@ -182,116 +179,119 @@
     border-color: var(--color-teal-700);
     transform: translateY(-2px);
   }
+  .btn-outline-gold {
+    border: 1px solid color-mix(in srgb, var(--color-gold-400) 55%, transparent);
+    color: var(--color-gold-300);
+    background: transparent;
+  }
+  .btn-outline-gold:hover {
+    background: var(--color-gold-400);
+    color: var(--color-ink);
+    border-color: var(--color-gold-400);
+    transform: translateY(-2px);
+  }
   .btn-ghost-light {
-    border: 1px solid rgb(255 255 255 / 0.45);
+    border: 1px solid rgb(255 255 255 / 0.4);
     color: #fff;
-    background: rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.07);
     backdrop-filter: blur(6px);
   }
   .btn-ghost-light:hover {
-    background: rgb(255 255 255 / 0.18);
+    background: rgb(255 255 255 / 0.16);
     transform: translateY(-2px);
   }
 
-  .link-underline {
-    position: relative;
-  }
+  .link-underline { position: relative; }
   .link-underline::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -3px;
     width: 0;
     height: 1px;
     background: currentColor;
-    transition: width 0.4s var(--ease-soft);
+    transition: width 0.5s var(--ease-soft);
   }
-  .link-underline:hover::after {
-    width: 100%;
-  }
+  .link-underline:hover::after { width: 100%; }
 
   .card-surface {
     background: var(--color-paper);
-    border: 1px solid color-mix(in srgb, var(--color-teal-700) 9%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-gold-500) 16%, transparent);
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset,
-      0 18px 40px -30px rgb(18 41 38 / 0.4);
+      0 22px 48px -34px rgb(18 41 38 / 0.4);
   }
 
-  /* Cards that lift gently on hover */
   .hover-lift {
-    transition: transform 0.5s var(--ease-soft), box-shadow 0.5s var(--ease-soft);
+    transition: transform 0.6s var(--ease-soft), box-shadow 0.6s var(--ease-soft);
   }
   .hover-lift:hover {
-    transform: translateY(-6px);
+    transform: translateY(-7px);
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset,
-      0 30px 60px -32px rgb(18 41 38 / 0.45);
+      0 36px 68px -36px rgb(18 41 38 / 0.45);
   }
 
-  .text-balance {
-    text-wrap: balance;
-  }
-  .text-pretty {
-    text-wrap: pretty;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
 
-  /* Hairline rule with a gold centre stop */
   .rule-gold {
     height: 1px;
     background: linear-gradient(
       to right,
       transparent,
-      color-mix(in srgb, var(--color-gold-500) 55%, transparent),
+      color-mix(in srgb, var(--color-gold-500) 60%, transparent),
       transparent
     );
+  }
+
+  /* Thin gold frame inset from an image edge — a resort-theme signature */
+  .frame-gold::after {
+    content: "";
+    position: absolute;
+    inset: 0.9rem;
+    border: 1px solid rgb(213 185 129 / 0.5);
+    pointer-events: none;
+    z-index: 1;
   }
 }
 
 /* ============ Motion ============ */
 
-/* Slow cinematic drift on hero imagery */
 @keyframes kenburns {
   from { transform: scale(1) translate3d(0, 0, 0); }
   to { transform: scale(1.12) translate3d(-1%, -1.5%, 0); }
 }
-.animate-kenburns {
-  animation: kenburns 26s ease-out forwards;
-}
+.animate-kenburns { animation: kenburns 26s ease-out forwards; }
 
-/* Gentle bob for floating accent cards */
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-.animate-floaty {
-  animation: floaty 7s ease-in-out infinite;
-}
+.animate-floaty { animation: floaty 7s ease-in-out infinite; }
 
-/* Soft ambient glow that breathes behind sections */
 @keyframes aura {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.5; }
-  50% { transform: translate3d(2%, -3%, 0) scale(1.08); opacity: 0.75; }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.45; }
+  50% { transform: translate3d(2%, -3%, 0) scale(1.1); opacity: 0.7; }
 }
-.animate-aura {
-  animation: aura 18s ease-in-out infinite;
-}
+.animate-aura { animation: aura 18s ease-in-out infinite; }
 
-/* Slow marquee for the treatment ticker */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 42s linear infinite;
-}
+.animate-marquee { animation: marquee 46s linear infinite; }
 
-/* First-paint fade for above-the-fold chrome */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-up {
-  animation: fadeUp 0.9s var(--ease-soft) both;
+.animate-fade-up { animation: fadeUp 0.9s var(--ease-soft) both; }
+
+/* Slow, continuous rotation for the botanical ornament */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
+.animate-spin-slow { animation: spin-slow 40s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -299,15 +299,11 @@
   .animate-floaty,
   .animate-aura,
   .animate-marquee,
-  .animate-fade-up {
-    animation: none;
-  }
-  .hover-lift:hover {
-    transform: none;
-  }
+  .animate-fade-up,
+  .animate-spin-slow { animation: none; }
+  .hover-lift:hover { transform: none; }
 }
 
-/* Subtle grain overlay for light sections */
 .bg-noise {
   background-image: radial-gradient(circle at 1px 1px, rgb(38 43 43 / 0.035) 1px, transparent 0);
   background-size: 22px 22px;

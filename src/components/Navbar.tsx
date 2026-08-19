@@ -110,7 +110,7 @@ export function Navbar() {
 
             <Link
               href="/booking"
-              className={`btn hidden text-sm sm:inline-flex ${
+              className={`btn hidden sm:inline-flex ${
                 solid ? "btn-gold" : "btn-ghost-light"
               }`}
             >

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Prata, Jost } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
@@ -7,12 +7,13 @@ import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 
-// Display: an elegant transitional serif, close in feel to the ZARROW wordmark.
-const cormorant = Cormorant_Garamond({
+// Display: Prata — the high-contrast serif that carries the resort-luxury
+// reference. It ships a single weight; its elegance comes from scale and air.
+const prata = Prata({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-prata",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400"],
 });
 
 // Sans: a geometric with the same wide, calm tracking as "MEDICAL AESTHETICS".
@@ -65,7 +66,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={`${prata.variable} ${jost.variable}`}>
       <body className="min-h-dvh antialiased">
         <ScrollProgress />
         <a

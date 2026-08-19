@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
+import { Ornament } from "@/components/Ornament";
 
 /**
  * The standard section heading: eyebrow kicker, display-serif title,
@@ -21,24 +22,24 @@ export function SectionHeading({
   className?: string;
 }) {
   const centered = align === "center";
+  // Centred headings use the <Ornament/> rule instead of the inline eyebrow dashes.
   return (
     <div
       className={`${centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"} ${className}`}
     >
       {eyebrow ? (
         <Reveal>
-          <p
-            className={`eyebrow ${centered ? "is-centered" : ""} ${
-              light ? "text-gold-300" : ""
-            }`}
-          >
-            {eyebrow}
-          </p>
+          <p className={`eyebrow ${light ? "text-gold-300" : ""}`}>{eyebrow}</p>
+        </Reveal>
+      ) : null}
+      {centered ? (
+        <Reveal delay={0.03}>
+          <Ornament light={light} className="mt-6" />
         </Reveal>
       ) : null}
       <Reveal delay={0.06}>
         <h2
-          className={`mt-5 font-display text-[2rem] leading-[1.1] sm:text-4xl lg:text-[2.75rem] text-balance ${
+          className={`mt-6 font-display text-[2.05rem] leading-[1.14] sm:text-[2.6rem] lg:text-[3.1rem] text-balance ${
             light ? "text-cream" : "text-teal-800"
           }`}
         >
@@ -48,7 +49,7 @@ export function SectionHeading({
       {intro ? (
         <Reveal delay={0.12}>
           <p
-            className={`mt-5 text-base leading-relaxed text-pretty ${
+            className={`mt-6 text-base leading-relaxed text-pretty ${
               light ? "text-teal-100/80" : "text-stone"
             }`}
           >

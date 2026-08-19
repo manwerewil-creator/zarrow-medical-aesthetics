@@ -22,6 +22,9 @@ import {
 import { BRANCHES, SITE } from "@/lib/site";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { SectionHeading } from "@/components/Section";
+import { Ornament } from "@/components/Ornament";
+import { Parallax } from "@/components/Parallax";
+import { RevealImage } from "@/components/RevealImage";
 import { TreatmentCard } from "@/components/TreatmentCard";
 import { Credit } from "@/components/Credit";
 
@@ -118,10 +121,10 @@ export default function HomePage() {
             className="animate-fade-up mt-7 flex flex-col gap-3"
             style={{ animationDelay: "240ms" }}
           >
-            <Link href="/booking" className="btn btn-gold w-full text-base">
+            <Link href="/booking" className="btn btn-gold w-full">
               Book a consultation
             </Link>
-            <Link href="/treatments" className="btn btn-outline w-full text-base">
+            <Link href="/treatments" className="btn btn-outline w-full">
               Explore treatments <ArrowRight size={18} />
             </Link>
           </div>
@@ -179,10 +182,10 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link href="/booking" className="btn btn-gold text-base">
+              <Link href="/booking" className="btn btn-gold">
                 Book a consultation
               </Link>
-              <Link href="/treatments" className="btn btn-ghost-light text-base">
+              <Link href="/treatments" className="btn btn-ghost-light">
                 Explore treatments <ArrowRight size={18} />
               </Link>
             </div>
@@ -220,17 +223,15 @@ export default function HomePage() {
       <section className="bg-noise bg-cream">
         <div className="container-x grid gap-14 py-24 md:py-32 lg:grid-cols-2 lg:items-center">
           <div className="relative">
-            <Reveal>
-              <div className="card-surface relative aspect-[4/5] overflow-hidden rounded-[var(--radius-xl2)]">
-                <Image
-                  src={BRAND.facial.src}
-                  alt={BRAND.facial.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            </Reveal>
+            <RevealImage className="card-surface frame-gold aspect-[4/5] rounded-[var(--radius-xl2)]">
+              <Image
+                src={BRAND.facial.src}
+                alt={BRAND.facial.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </RevealImage>
             <Reveal delay={0.15}>
               <div className="card-surface animate-floaty absolute -bottom-8 -right-4 hidden w-52 rounded-2xl bg-paper p-5 sm:block">
                 <p className="font-display text-3xl text-teal-700">Welcome.</p>
@@ -427,6 +428,45 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ============ THE RITUAL — parallax luxe band ============ */}
+      <section className="relative isolate overflow-hidden bg-ink text-cream">
+        <Parallax className="absolute inset-0" distance={80}>
+          <Image
+            src={IMAGES.steamRoom.src}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+        </Parallax>
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
+
+        <div className="container-x relative py-28 text-center md:py-36">
+          <Reveal>
+            <p className="eyebrow justify-center text-gold-300">The Zarrow way</p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Ornament light className="mt-6" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="measure mt-9 font-display text-[1.7rem] leading-[1.45] text-cream text-balance sm:text-[2.1rem] lg:text-[2.4rem]">
+              Unhurried rooms, considered hands, and a plan made for your skin
+              — not for everyone&rsquo;s.
+            </p>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+              <Link href="/booking" className="btn btn-gold">
+                Book a consultation
+              </Link>
+              <Link href="/treatments" className="btn btn-outline-gold">
+                View the menu
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============ HOW IT WORKS ============ */}
       <section className="bg-ivory">
         <div className="container-x py-24 md:py-32">
@@ -600,10 +640,10 @@ export default function HomePage() {
                 decisions — made with someone who knows what they are doing.
               </p>
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link href="/booking" className="btn btn-gold text-base">
+                <Link href="/booking" className="btn btn-gold">
                   Book your consultation
                 </Link>
-                <Link href="/contact" className="btn btn-ghost-light text-base">
+                <Link href="/contact" className="btn btn-ghost-light">
                   Ask us a question
                 </Link>
               </div>
